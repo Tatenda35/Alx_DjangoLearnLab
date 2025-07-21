@@ -44,16 +44,16 @@ def check_role(role):
 
 @login_required
 @user_passes_test(check_role('Admin'))
-def admin_view(request):
+def admin(request):
     return render(request, 'relationship_app/admin_view.html')
 
 @login_required
 @user_passes_test(check_role('Librarian'))
-def librarian_view(request):
+def librarian(request):
     return render(request, 'relationship_app/librarian_view.html')
 
 @login_required
 @user_passes_test(check_role('Member'))
-def member_view(request):
+def member(request):
     return render(request, 'relationship_app/member_view.html')
 
