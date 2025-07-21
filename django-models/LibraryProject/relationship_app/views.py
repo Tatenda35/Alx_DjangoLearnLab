@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
@@ -22,8 +23,9 @@ def register_view(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("login")
+            user = form.save()
+            login(request, user)  # ✅ Log in the user after registration
+            return redirect("login")  # or redirect to a dashboard/home
     else:
         form = UserCreationForm()
     return render(request, "relationship_app/register.html", {"form": form})
