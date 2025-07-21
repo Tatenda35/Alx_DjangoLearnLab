@@ -44,7 +44,7 @@ def check_role(role):
 
 @login_required
 @user_passes_test(check_role('Admin'))
-def admin(request):
+def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
 @login_required
